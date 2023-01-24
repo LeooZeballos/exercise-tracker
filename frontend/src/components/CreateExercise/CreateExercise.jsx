@@ -10,7 +10,6 @@ const CreateExercise = () => {
   const [duration, setDuration] = useState(0);
   const [date, setDate] = useState(new Date());
   const [users, setUsers] = useState(["Loading..."]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get("http://localhost:5000/users").then((res) => {
@@ -18,7 +17,6 @@ const CreateExercise = () => {
         setUsers(res.data.map((user) => user.username));
         setUser(res.data[0].username);
       }
-      setLoading(false);
     });
   }, []);
 
