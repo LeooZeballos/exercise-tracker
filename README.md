@@ -27,6 +27,14 @@ ATLAS_URI=
 PORT=
 ```
 
+Create a .env file in the frontend directory and add the following variables:
+
+```bash
+MODE=
+```
+
+Where MODE is either "local" or "production".
+
 ### Backend
 
 To run the backend, cd into the backend directory and run:

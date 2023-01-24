@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './EditExercise.css';
+import api from "../../utils";
 
 const EditExercise = () => {
   const [user, setUser] = useState("");
@@ -14,14 +15,14 @@ const EditExercise = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/exercises/" + id).then((res) => {
+    axios.get(api + "/exercises/" + id).then((res) => {
       const data = res.data;
       setUser(data.username);
       setDescription(data.description);
       setDuration(data.duration);
       setDate(new Date(data.date));
     });
-    axios.get("http://localhost:5000/users").then((res) => {
+    axios.get(api + "/users").then((res) => {
       if (res.data.length > 0) {
         setUsers(res.data.map((user) => user.username));
       }
@@ -38,7 +39,7 @@ const EditExercise = () => {
       date: date,
     };
 
-    axios.put("http://localhost:5000/exercises/" + id, exercise).then((res) => {
+    axios.put(api + "/exercises/" + id, exercise).then((res) => {
       console.log(res.data);
     });
 

@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./ExerciseList.css";
+import api from "../../utils";
 
 const ExerciseList = () => {
   const [exercises, setExercises] = useState([]);
 
   const deleteExercise = (id) => {
-    axios.delete("http://localhost:5000/exercises/" + id).then((res) => {
+    axios.delete(api + "/exercises/" + id).then((res) => {
       console.log(res.data);
     });
     setExercises(exercises.filter((el) => el._id !== id));
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/exercises").then((res) => {
+    axios.get(api + "/exercises").then((res) => {
       if (res.data.length > 0)
         setExercises(res.data.map((exercise) => exercise));
     })

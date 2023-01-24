@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import api from "../../utils";
 import './CreateExercise.css';
 
 const CreateExercise = () => {
@@ -12,7 +13,7 @@ const CreateExercise = () => {
   const [users, setUsers] = useState(["Loading..."]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/users").then((res) => {
+    axios.get(api + "/users").then((res) => {
       if (res.data.length > 0) {
         setUsers(res.data.map((user) => user.username));
         setUser(res.data[0].username);
@@ -30,7 +31,7 @@ const CreateExercise = () => {
       date: date,
     };
 
-    axios.post("http://localhost:5000/exercises", exercise).then((res) => {
+    axios.post(api + "/exercises", exercise).then((res) => {
       console.log(res.data);
     });
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./CreateUser.css";
+import api from "../../utils";
 
 const CreateUser = () => {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ const CreateUser = () => {
       username: username,
     };
 
-    axios.post("http://localhost:5000/users", user).then((res) => {
+    axios.post(api + "/users", user).then((res) => {
       console.log(res.data);
     });
 
