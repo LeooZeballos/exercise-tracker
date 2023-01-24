@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./CreateUser.css";
 
 const CreateUser = () => {
@@ -11,7 +12,9 @@ const CreateUser = () => {
       username: username,
     };
 
-    console.log(user);
+    axios.post("http://localhost:5000/users", user).then((res) => {
+      console.log(res.data);
+    });
 
     setUsername("");
   };
