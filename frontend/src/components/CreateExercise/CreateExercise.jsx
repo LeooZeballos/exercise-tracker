@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import './CreateExercise.css';
 
 const CreateExercise = () => {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState("");
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState(0);
   const [date, setDate] = useState(new Date());
@@ -14,7 +14,7 @@ const CreateExercise = () => {
     e.preventDefault();
 
     const exercise = {
-      username: username,
+      username: user,
       description: description,
       duration: duration,
       date: date,
@@ -30,12 +30,12 @@ const CreateExercise = () => {
       <h3>Create New Exercise Log</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label>Username: </label>
+          <label>User: </label>
           <select
             required
             className="form-control"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
           >
             {users.map((user) => {
               return (
