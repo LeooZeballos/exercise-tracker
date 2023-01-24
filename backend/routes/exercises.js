@@ -27,10 +27,16 @@ router.route('/').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// GET an exercise by id
+// GET an exercise by id, if not found, return 404
 router.route('/:id').get((req, res) => {
   Exercise.findById(req.params.id)
-    .then(exercise => res.json(exercise))
+    .then(exercise => {
+      if (exercise) {
+        res.json(exercise);
+      } else {
+        res.status(404).json('Exercise not found.');
+      }
+    })
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -49,8 +55,11 @@ router.route('/:id').put((req, res) => {
       exercise.description = req.body.description;
       exercise.duration = Number(req.body.duration);
       exercise.date = Date.parse(req.body.date);
+
+      exercise.save()
+        .then(() => res.status(200).json('Exercise updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
     })
-    .then(() => res.status(200).json('Exercise updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

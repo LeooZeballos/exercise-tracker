@@ -22,7 +22,13 @@ router.route('/').post((req, res) => {
 // GET a user by id
 router.route('/:id').get((req, res) => {
   User.findById(req.params.id)
-    .then(user => res.json(user))
+    .then(user => {
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404).json('User not found.');
+      }
+    })
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -39,8 +45,11 @@ router.route('/:id').put((req, res) => {
   User.findById(req.params.id)
     .then(user => {
       user.username = req.body.username;
+
+      user.save()
+        .then(() => res.status(200).json('User updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
     })
-    .then(() => res.status(200).json('User updated.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
