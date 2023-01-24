@@ -12,7 +12,7 @@ Simple MERN stack app to track exercises.
 
 ## Usage
 
-This app is deployed on Render at ...
+This app is deployed on Render: [Frontend](https://exercise-tracker-frontend-ufsi.onrender.com/) | [Backend](https://exercise-tracker-backend-ahhh.onrender.com/).
 
 ## Installation
 
@@ -30,10 +30,10 @@ PORT=
 Create a .env file in the frontend directory and add the following variables:
 
 ```bash
-MODE=
+REACT_APP_API_URL=
 ```
 
-Where MODE is either "local" or "production".
+If you are running the backend locally, you don't need to change the REACT_APP_API_URL variable.
 
 ### Backend
 
