@@ -8,12 +8,14 @@ const App = () => {
     <Router>
       <Navbar />
       <br />
-      <Routes>
-        <Route path="/" element={<ExerciseList />} />
-        <Route path="/edit/:id" element={<EditExercise />} />
-        <Route path="/create" element={<CreateExercise />} />
-        <Route path="/user" element={<CreateUser />} />
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<ExerciseList />} />
+          <Route path="/edit/:id" element={<EditExercise />} />
+          <Route path="/create" element={<CreateExercise />} />
+          <Route path="/user" element={<CreateUser />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
