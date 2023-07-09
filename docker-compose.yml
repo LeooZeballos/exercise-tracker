@@ -1,0 +1,36 @@
+version: '3'
+services:
+  backend:
+    image: exercise-tracker-backend
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongodb
+    environment:
+      - ATLAS_URI=mongodb://mongodb:27017/exercise-tracker
+    networks:
+      - default
+    
+  frontend:
+    image: exercise-tracker-frontend
+    ports:
+      - 3000:80
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    networks:
+      - default
+
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
+
+networks:
+  default:
+    name: exercise-tracker-network
+
